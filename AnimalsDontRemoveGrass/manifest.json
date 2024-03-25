@@ -6,5 +6,5 @@
   "UniqueID": "MrShreddie.AnimalsDontRemoveGrass",
   "EntryDll": "AnimalsDontRemoveGrass.dll",
   "MinimumApiVersion": "4.0.0",
-  "UpdateKeys": [  ]
+  "UpdateKeys": [ "Nexus:21028:" ]
 }
