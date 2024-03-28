@@ -1,7 +1,7 @@
 ﻿{
   "Name": "Animals Don't Remove Grass",
   "Author": "MrShreddie",
-  "Version": "1.0.1",
+  "Version": "1.1.0",
   "Description": "Animals eat but don't remove grass when eating outside",
   "UniqueID": "MrShreddie.AnimalsDontRemoveGrass",
   "EntryDll": "AnimalsDontRemoveGrass.dll",
