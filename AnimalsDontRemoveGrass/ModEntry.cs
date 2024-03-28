@@ -12,8 +12,8 @@ namespace AnimalsDontRemoveGrass
 {
     public sealed class ModConfig
     {
-        public bool BoolBlue { get; set; } = true;
-        public bool BoolRegular { get; set; } = true;
+        public bool ToggleBlue { get; set; } = true;
+        public bool ToggleRegular { get; set; } = true;
     }
 
     [HarmonyPatch(typeof(FarmAnimal))]
@@ -29,8 +29,8 @@ namespace AnimalsDontRemoveGrass
             new Harmony(this.ModManifest.UniqueID).PatchAll(typeof(ModEntry).Assembly);
 
             Config = this.Helper.ReadConfig<ModConfig>();
-            bool blueBool = Config.BoolBlue;
-            bool regularBool = Config.BoolRegular;
+            bool blueBool = Config.ToggleBlue;
+            bool regularBool = Config.ToggleRegular;
 
             helper.Events.GameLoop.GameLaunched += onGameLaunched;
 
@@ -55,16 +55,16 @@ namespace AnimalsDontRemoveGrass
                 mod: this.ModManifest,
                 name: () => "Don't remove blue grass",
                 tooltip: () => "Disabling this will cause blue grass tiles to be removed by animals when eaten.",
-                getValue: () => Config.BoolBlue,
-                setValue: value => Config.BoolBlue = value
+                getValue: () => Config.ToggleBlue,
+                setValue: value => Config.ToggleBlue = value
             );
 
             configMenu.AddBoolOption(
                 mod: this.ModManifest,
                 name: () => "Don't remove regular grass",
                 tooltip: () => "Disabling this will cause regular grass tiles to be removed by animals when eaten.",
-                getValue: () => Config.BoolRegular,
-                setValue: value => Config.BoolRegular = value
+                getValue: () => Config.ToggleRegular,
+                setValue: value => Config.ToggleRegular = value
             );
         }
 
@@ -84,14 +84,14 @@ namespace AnimalsDontRemoveGrass
                     // Remove grass tile if config set to off (depending on grass type)
                     int number = __instance.GetAnimalData()?.GrassEatAmount ?? 2;
 
-                    if (!Config.BoolBlue && grass.grassType.Value == 7)
+                    if (!Config.ToggleBlue && grass.grassType.Value == 7)
                     {
                         if (grass.reduceBy(number, location.Equals(Game1.currentLocation)))
                         {
                             location.terrainFeatures.Remove(tile);
                         }
                     }
-                    if (!Config.BoolRegular && grass.grassType.Value != 7)
+                    if (!Config.ToggleRegular && grass.grassType.Value != 7)
                     {
                         if (grass.reduceBy(number, location.Equals(Game1.currentLocation)))
                         {
